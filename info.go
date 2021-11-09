@@ -28,7 +28,8 @@ func getInfo(endpoint string) Info {
 	return info.Info
 }
 
-// makerange produces a slice of strings from a certain number range
+// makerange produces a slice of strings that ranges from 1 to
+// the number of IDs returned by the info object of a certain endpoint
 func makerange(min, max int) []string {
 	strSlice := make([]string, max-min+1)
 	for idx := range strSlice {
@@ -37,5 +38,6 @@ func makerange(min, max int) []string {
 	return strSlice
 }
 
-// takes a slice of string and turns its content into a string separated by commas
+// sliceToStringes poduces the string range allowed by the endpoint for querying
+// multiple objects (used to return all the objects from one http call)
 func sliceToString(slc []string) string { return strings.Join(slc, ",") }

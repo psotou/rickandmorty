@@ -9,6 +9,7 @@ import (
 
 // All I care is the name of the location
 type locationResults struct {
+	Id   int    `json:"id"`
 	Name string `json:"name"`
 }
 
