@@ -27,20 +27,26 @@ func main() {
 	// stringyfy := strings.Join(mapEpiLoc[v.Episode], ",")
 	// fmt.Println(getCharacterLocation(stringyfy))
 
-	mm := episodeNames.characterIdsPerEpisode()
-	fmt.Println(mm)
+	charIdsPerEpi := episodeNames.characterIdsPerEpisode()
+	// fmt.Println(charIdsPerEpi)
 
 	charIdOrigin := charIdWithOriginName()
-	fmt.Println(charIdOrigin)
+	// fmt.Println(charIdOrigin)
 
 	// wrap this into a function for this returns the episodes with the locations (origin) of characters
-	episodeLocationMap := make(map[string][]string)
-	for k, v := range mm {
-		for _, vv := range v {
-			// fmt.Println(charIdOrigin[vv])
-			episodeLocationMap[k] = append(episodeLocationMap[k], charIdOrigin[vv])
-		}
-	}
-	fmt.Println(episodeLocationMap)
+	// episodeLocationMap := make(map[string][]string)
+	// for k, v := range charIdsPerEpi {
+	// 	for _, vv := range v {
+	// 		episodeLocationMap[k] = append(episodeLocationMap[k], charIdOrigin[vv])
+	// 	}
+	// }
+	// fmt.Println(episodeLocationMap)
 
+	loc := locationPerEpisode(charIdsPerEpi, charIdOrigin)
+	// fmt.Println(loc)
+
+	for k, v := range loc {
+		fmt.Println(k)
+		fmt.Println(v)
+	}
 }

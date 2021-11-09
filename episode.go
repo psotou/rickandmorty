@@ -59,3 +59,26 @@ func (c *episodeObj) characterIdsPerEpisode() map[string][]string {
 	}
 	return charIdsSlc
 }
+
+func locationPerEpisode(characterIdsPerEpi map[string][]string, charIdWithOrigin map[string]string) map[string][]string {
+	episodeLocationMap := make(map[string][]string)
+	for k, v := range characterIdsPerEpi {
+		for _, vv := range v {
+			episodeLocationMap[k] = append(episodeLocationMap[k], charIdWithOrigin[vv])
+		}
+		episodeLocationMap[k] = removeDuplicateStr(episodeLocationMap[k])
+	}
+	return episodeLocationMap
+}
+
+func removeDuplicateStr(strSlice []string) []string {
+	allKeys := make(map[string]bool)
+	list := []string{}
+	for _, item := range strSlice {
+		if _, value := allKeys[item]; !value {
+			allKeys[item] = true
+			list = append(list, item)
+		}
+	}
+	return list
+}
