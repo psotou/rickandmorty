@@ -8,19 +8,19 @@ import (
 )
 
 // All I care is the name of the location
-type locationResults struct {
+type LocationResults struct {
 	Id   int    `json:"id"`
 	Name string `json:"name"`
 }
 
-type locationsObj struct {
-	locations []locationResults
+type LocationsObj struct {
+	locations []LocationResults
 }
 
-func getLocationNames() locationsObj {
-	var locResults []locationResults
+func GetLocationNames() LocationsObj {
+	var locResults []LocationResults
 	locationsNumber := getInfo(Location).Count
-	locationsRange := makerange(1, locationsNumber)
+	locationsRange := makeRange(1, locationsNumber)
 	locationWithIdsURL := fmt.Sprintf("%s%s", Location, sliceToString(locationsRange))
 
 	locationData, _ := getReq(locationWithIdsURL)
@@ -28,11 +28,11 @@ func getLocationNames() locationsObj {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	return locationsObj{locations: locResults}
+	return LocationsObj{locations: locResults}
 }
 
 // this approach has a better performance
-func (loc *locationsObj) countChar(char string) int {
+func (loc *LocationsObj) CountChar(char string) int {
 	var count int
 	for _, v := range loc.locations {
 		count += strings.Count(v.Name, char)

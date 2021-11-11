@@ -8,26 +8,26 @@ import (
 	"strings"
 )
 
-type characterResults struct {
+type CharacterResults struct {
 	Id       int             `json:"id"`
 	Name     string          `json:"name"`
-	Location characterOrigin `json:"origin"`
+	Location CharacterOrigin `json:"origin"`
 	// Episode  []string        `json:"episode"`
 }
 
-type characterOrigin struct {
+type CharacterOrigin struct {
 	Name string `json:"name"`
 	Url  string `json:"url"`
 }
 
-type characterObj struct {
-	characters []characterResults
+type CharacterObj struct {
+	characters []CharacterResults
 }
 
-func getCharacterNames() characterObj {
-	var charResults []characterResults
+func getCharacterNames() CharacterObj {
+	var charResults []CharacterResults
 	characterNumber := getInfo(Character).Count
-	characterRange := makerange(1, characterNumber)
+	characterRange := makeRange(1, characterNumber)
 	characterWithIdsURL := fmt.Sprintf("%s%s", Character, sliceToString(characterRange))
 
 	characterData, _ := getReq(characterWithIdsURL)
@@ -35,11 +35,11 @@ func getCharacterNames() characterObj {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	return characterObj{characters: charResults}
+	return CharacterObj{characters: charResults}
 }
 
 // this approach has a better performance
-func (c *characterObj) countChar(char string) int {
+func (c *CharacterObj) countChar(char string) int {
 	var count int
 	for _, v := range c.characters {
 		count += strings.Count(v.Name, char)
@@ -47,10 +47,10 @@ func (c *characterObj) countChar(char string) int {
 	return count
 }
 
-// returns a map with character id and location (origin) name
-func charIdWithOriginName() map[string]string {
+// returns a map with character id location (origin) name for that character
+func (c *CharacterObj) charIdWithLocationName() map[string]string {
 	charIdOrigin := make(map[string]string)
-	for _, v := range getCharacterNames().characters {
+	for _, v := range c.characters {
 		strId := strconv.Itoa(v.Id)
 		charIdOrigin[strId] = v.Location.Name
 	}

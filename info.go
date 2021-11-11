@@ -30,7 +30,7 @@ func getInfo(endpoint string) Info {
 
 // makerange produces a slice of strings that ranges from 1 to
 // the number of IDs returned by the info object of a certain endpoint
-func makerange(min, max int) []string {
+func makeRange(min, max int) []string {
 	strSlice := make([]string, max-min+1)
 	for idx := range strSlice {
 		strSlice[idx] = strconv.Itoa(min + idx)
@@ -41,3 +41,17 @@ func makerange(min, max int) []string {
 // sliceToStringes poduces the string range allowed by the endpoint for querying
 // multiple objects (used to return all the objects from one http call)
 func sliceToString(slc []string) string { return strings.Join(slc, ",") }
+
+// removeDuplicateStr is a utility function that removes duplicate elements
+// in a slice of strings
+func removeDuplicateStr(strSlice []string) []string {
+	allKeys := make(map[string]bool)
+	list := []string{}
+	for _, item := range strSlice {
+		if _, value := allKeys[item]; !value {
+			allKeys[item] = true
+			list = append(list, item)
+		}
+	}
+	return list
+}
