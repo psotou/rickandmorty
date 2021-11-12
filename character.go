@@ -8,11 +8,21 @@ import (
 	"strings"
 )
 
+// iCharacter interface defines the methods associated with the CharacterObj struct
+type iCharacter interface {
+	countChar(string) int
+	charIdWithLocationName() map[string]string
+}
+
+// CharacterObj is the struct type that implemts the iCharacter interface
+// Contains a collection of the object CharacterResults
+type CharacterObj struct {
+	characters []CharacterResults
+}
 type CharacterResults struct {
 	Id       int             `json:"id"`
 	Name     string          `json:"name"`
 	Location CharacterOrigin `json:"origin"`
-	// Episode  []string        `json:"episode"`
 }
 
 type CharacterOrigin struct {
@@ -20,11 +30,10 @@ type CharacterOrigin struct {
 	Url  string `json:"url"`
 }
 
-type CharacterObj struct {
-	characters []CharacterResults
-}
-
-func getCharacterNames() CharacterObj {
+// getCharacters embeds CharaterObj struct and indirectly implements
+// the iCharacter interface. This approach allows for the use of a syntax
+// like getCharacters().countChar() declared in one line
+func getCharacters() iCharacter {
 	var charResults []CharacterResults
 	characterNumber := getInfo(Character).Count
 	characterRange := makeRange(1, characterNumber)
@@ -35,10 +44,11 @@ func getCharacterNames() CharacterObj {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	return CharacterObj{characters: charResults}
+	return &CharacterObj{characters: charResults}
 }
 
-// this approach has a better performance
+// countChar method implemented on the CharacterObj struct
+// Counts the ocurrence of a certain character in the CharacterResult.Name field
 func (c *CharacterObj) countChar(char string) int {
 	var count int
 	for _, v := range c.characters {
@@ -47,7 +57,8 @@ func (c *CharacterObj) countChar(char string) int {
 	return count
 }
 
-// returns a map with character id location (origin) name for that character
+// charIdWithLocationName method implemented on the CharacterObj struct
+// Returns a map with character id location (origin) name for that character
 func (c *CharacterObj) charIdWithLocationName() map[string]string {
 	charIdOrigin := make(map[string]string)
 	for _, v := range c.characters {

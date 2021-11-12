@@ -7,7 +7,18 @@ import (
 	"strings"
 )
 
-// episodeResults cointains the necessary information to map all
+// iEpisodes interface defines the methods associated with the EpisodeObj struct
+type iEpisodes interface {
+	countChar(string) int
+	// characterIdsPerEpisode() CharIdsEpisodeObj
+	characterIdsPerEpisode() []EpisodeWithCharIds
+}
+
+type EpisodeObj struct {
+	episodes []EpisodeResults
+}
+
+// EpisodeResults cointains the necessary information to map all
 // locations used per episode
 type EpisodeResults struct {
 	Id         int      `json:"id"`
@@ -16,12 +27,10 @@ type EpisodeResults struct {
 	Characters []string `json:"characters"`
 }
 
-type EpisodeObj struct {
-	episodes []EpisodeResults
-}
-
-// getEpisodeNames returns the names of all the episodes
-func getEpisodeNames() EpisodeObj {
+// getEpisodes embeds EpisodeObj struct and indirectly implements
+// the iEpisodes interface. This approach allows for the use of a syntax
+// like getEpisodes().countChar() declared in one line
+func getEpisodes() iEpisodes {
 	var episodeResults []EpisodeResults
 	episodeNumber := getInfo(Episode).Count
 	episodeRange := makeRange(1, episodeNumber)
@@ -32,10 +41,11 @@ func getEpisodeNames() EpisodeObj {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	return EpisodeObj{episodes: episodeResults}
+	return &EpisodeObj{episodes: episodeResults}
 }
 
-// countChar counts the number of ocurrences of a certain character
+// countChar method implemented on the EpisodeObj struct
+// Counts the ocurrence of a certain character in the EpisodeResult.Name field
 func (c *EpisodeObj) countChar(char string) int {
 	var count int
 	for _, v := range c.episodes {
@@ -44,10 +54,10 @@ func (c *EpisodeObj) countChar(char string) int {
 	return count
 }
 
-// custom types for the characterIdsPerEpisode function
-type charIdsPerEpisode map[string][]string
-
-type CharIdsEpisode struct {
+// EpisodeWithCharIds is similar to EpisodeResults struct
+// however, it stores the ids of the characters instead of the endpoint
+// of every character
+type EpisodeWithCharIds struct {
 	EpisodeName  string
 	EpisodeCode  string
 	CharacterIds []string
@@ -55,54 +65,47 @@ type CharIdsEpisode struct {
 
 // characterIdsPerEpisode maps every episode with a slice containing
 // the characters ids that appeared in said episode
-// func (e *EpisodeObj) characterIdsPerEpisode() map[string][]string {
-func (e *EpisodeObj) characterIdsPerEpisode() CharIdsEpisodeObj {
-	charIdsSlc := make(charIdsPerEpisode)
-	var charIds []CharIdsEpisode
+// func (e *EpisodeObj) characterIdsPerEpisode() CharIdsEpisodeObj {
+func (e *EpisodeObj) characterIdsPerEpisode() []EpisodeWithCharIds {
+	charIdsSlc := make(map[string][]string)
+	var charIds []EpisodeWithCharIds
 	for _, epsds := range e.episodes {
 		for _, chr := range epsds.Characters {
 			idIndex := strings.LastIndex(chr, "/")
 			charIdsSlc[epsds.Episode] = append(charIdsSlc[epsds.Episode], chr[idIndex+1:])
 		}
-		charIdsSingle := CharIdsEpisode{EpisodeName: epsds.Name, EpisodeCode: epsds.Episode, CharacterIds: charIdsSlc[epsds.Episode]}
+		charIdsSingle := EpisodeWithCharIds{
+			EpisodeName:  epsds.Name,
+			EpisodeCode:  epsds.Episode,
+			CharacterIds: charIdsSlc[epsds.Episode],
+		}
 		charIds = append(charIds, charIdsSingle)
 	}
-	// return charIdsSlc
-	return CharIdsEpisodeObj{CharIds: charIds}
+	// return CharIdsEpisodeObj{CharIds: charIds}
+	return charIds
 }
 
-// custom type for the locationPerEpisode function
-type locationsPerCharId map[string]string
-
-type CharIdsEpisodeObj struct {
-	CharIds []CharIdsEpisode
-}
-
-type LocEpiObj struct {
+type EpisodeLocations struct {
 	Name      string
 	Episode   string   `json:"episode"`
 	Locations []string `json:"locations"`
 }
 
-// locationPerEpisode takes all the character ids per episode and all the locations (origins) per character
-// and returns a map with the episode code with all the locations per episode (unique values)
-// func (c *CharIdsEpisodeObj) locationPerEpisode(locsPerCharId locationsPerCharId) map[string][]string {
-func (c *CharIdsEpisodeObj) locationPerEpisode(locsPerCharId locationsPerCharId) []LocEpiObj {
+// episodeLocations takes all the locations (origins) per character and all the character ids per episode
+// and returns the locations per episode (unique values)
+func episodeLocations(locsPerCharId map[string]string, epiCharIds []EpisodeWithCharIds) []EpisodeLocations {
 	episodeLocationMap := make(map[string][]string)
-	var locEpi []LocEpiObj
-	var locEpiSingle LocEpiObj
-	// for k, v := range c.characterIdsPerEpisode() {
-	for _, v := range c.CharIds {
+	var locEpi []EpisodeLocations
+	var locEpiSingle EpisodeLocations
+	for _, v := range epiCharIds {
 		for _, vv := range v.CharacterIds {
 			episodeLocationMap[v.EpisodeCode] = append(episodeLocationMap[v.EpisodeCode], locsPerCharId[vv])
-			locEpiSingle = LocEpiObj{Name: v.EpisodeName, Episode: v.EpisodeCode}
+			locEpiSingle = EpisodeLocations{Name: v.EpisodeName, Episode: v.EpisodeCode}
 
 		}
 		locEpiSingle.Locations = removeDuplicateStr(episodeLocationMap[v.EpisodeCode])
-		// episodeLocationMap[k] = removeDuplicateStr(episodeLocationMap[k])
-		// episodeLocationMap[v.EpisodeCode] = removeDuplicateStr(episodeLocationMap[v.EpisodeCode])
 		locEpi = append(locEpi, locEpiSingle)
 	}
-	// return episodeLocationMap
+
 	return locEpi
 }

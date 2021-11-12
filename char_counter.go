@@ -1,13 +1,15 @@
 package main
 
-import "encoding/json"
+import (
+	"fmt"
+	"time"
+)
 
 type CharCounter struct {
-	ExerciseName string `json:"exercise_name"`
-	// check the tyope of this thou
-	Time    string               `json:"time"`
-	InTime  bool                 `json:"in_time"`
-	Results []CharCounterResults `json:"results"`
+	ExerciseName string               `json:"exercise_name"`
+	Time         string               `json:"time"`
+	InTime       bool                 `json:"in_time"`
+	Results      []CharCounterResults `json:"results"`
 }
 
 type CharCounterResults struct {
@@ -24,16 +26,13 @@ func charCounter(resource string) CharCounterResults {
 	switch resource {
 	case "location":
 		char = "l"
-		locNames := GetLocationNames()
-		count = locNames.CountChar(char)
+		count = getLocations().countChar(char)
 	case "epsidode":
 		char = "e"
-		epiNames := getEpisodeNames()
-		count = epiNames.countChar(char)
+		count = getEpisodes().countChar(char)
 	case "character":
 		char = "c"
-		charNames := getCharacterNames()
-		count = charNames.countChar(char)
+		count = getCharacters().countChar(char)
 	}
 
 	res := CharCounterResults{
@@ -45,12 +44,24 @@ func charCounter(resource string) CharCounterResults {
 	return res
 }
 
-func charCounterResult() ([]byte, error) {
+func charCounterResult() CharCounter {
+	start := time.Now()
 	charCounterResources := []string{"location", "epsidode", "character"}
 	var res []CharCounterResults
 	for _, resource := range charCounterResources {
 		cc := charCounter(resource)
 		res = append(res, cc)
 	}
-	return json.Marshal(&res)
+	elapsed := time.Since(start)
+	var intime bool
+	if elapsed < time.Duration(3*1e9) {
+		intime = true
+	}
+
+	return CharCounter{
+		ExerciseName: "Char counter",
+		Time:         fmt.Sprint(elapsed),
+		InTime:       intime,
+		Results:      res,
+	}
 }
