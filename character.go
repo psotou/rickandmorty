@@ -11,7 +11,7 @@ import (
 // iCharacter interface defines the methods associated with the CharacterObj struct
 type iCharacter interface {
 	countChar(string) int
-	charIdWithLocationName() map[string]string
+	locationName() map[string]string
 }
 
 // CharacterObj is the struct type that implemts the iCharacter interface
@@ -57,9 +57,9 @@ func (c *CharacterObj) countChar(char string) int {
 	return count
 }
 
-// charIdWithLocationName method implemented on the CharacterObj struct
-// Returns a map with character id location (origin) name for that character
-func (c *CharacterObj) charIdWithLocationName() map[string]string {
+// locationName method implemented on the CharacterObj struct
+// returns a map with character id and the location (origin) name for that character
+func (c *CharacterObj) locationName() map[string]string {
 	charIdOrigin := make(map[string]string)
 	for _, v := range c.characters {
 		strId := strconv.Itoa(v.Id)

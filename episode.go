@@ -11,7 +11,7 @@ import (
 type iEpisodes interface {
 	countChar(string) int
 	// characterIdsPerEpisode() CharIdsEpisodeObj
-	characterIdsPerEpisode() []EpisodeWithCharIds
+	characterIds() []EpisodeWithCharIds
 }
 
 type EpisodeObj struct {
@@ -63,10 +63,10 @@ type EpisodeWithCharIds struct {
 	CharacterIds []string
 }
 
-// characterIdsPerEpisode maps every episode with a slice containing
+// characterIds maps every episode with a slice containing
 // the characters ids that appeared in said episode
 // func (e *EpisodeObj) characterIdsPerEpisode() CharIdsEpisodeObj {
-func (e *EpisodeObj) characterIdsPerEpisode() []EpisodeWithCharIds {
+func (e *EpisodeObj) characterIds() []EpisodeWithCharIds {
 	charIdsSlc := make(map[string][]string)
 	var charIds []EpisodeWithCharIds
 	for _, epsds := range e.episodes {

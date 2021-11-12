@@ -14,8 +14,8 @@ type EpiLocations struct {
 
 func episodeLocationsResult() EpiLocations {
 	start := time.Now()
-	charIdAndLoc := getCharacters().charIdWithLocationName()
-	epiAndCharIds := getEpisodes().characterIdsPerEpisode()
+	charIdAndLoc := getCharacters().locationName()
+	epiAndCharIds := getEpisodes().characterIds()
 	epiLocations := episodeLocations(charIdAndLoc, epiAndCharIds)
 
 	var intime bool
