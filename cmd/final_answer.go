@@ -2,12 +2,19 @@ package main
 
 import (
 	"encoding/json"
-	"errors"
 	"log"
 	"os"
 )
 
-func resultJSON() string {
+type iFinalRes interface {
+	writeJSON()
+}
+
+type FinalResult struct {
+	FinalRes string
+}
+
+func finalResult() iFinalRes {
 	charCount := charCounterResult()
 	locNames := episodeLocationsResult()
 	res := []interface{}{charCount, locNames}
@@ -16,18 +23,16 @@ func resultJSON() string {
 		log.Fatalf(err.Error())
 	}
 
-	return string(dataBytes)
+	return &FinalResult{FinalRes: string(dataBytes)}
 }
 
-func writeJSON(data string) {
+func (f *FinalResult) writeJSON() {
 	// return os.WriteFile("result", data, 0644)
 	file, _ := os.Create("result.json")
 	defer file.Close()
 
-	// _, err := file.Write(data)
-	_, err := file.WriteString(string(data))
+	_, err := file.WriteString(f.FinalRes)
 	if err != nil {
-		errors.New("Couldn't write to file reslut.json")
-		os.Exit(1)
+		log.Fatalf(err.Error())
 	}
 }

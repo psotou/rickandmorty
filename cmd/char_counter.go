@@ -49,8 +49,7 @@ func charCounterResult() CharCounter {
 	charCounterResources := []string{"location", "epsidode", "character"}
 	var res []CharCounterResults
 	for _, resource := range charCounterResources {
-		cc := charCounter(resource)
-		res = append(res, cc)
+		res = append(res, charCounter(resource))
 	}
 	elapsed := time.Since(start)
 	var intime bool
