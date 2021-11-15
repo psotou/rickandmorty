@@ -33,9 +33,11 @@ func getEpisodes() iEpisodes {
 	var episodeResults []EpisodeResults
 	episodeNumber := getInfo(Episode).Count
 	episodeRange := makeRange(1, episodeNumber)
-	episodeWithIdsURL := fmt.Sprintf("%s%s", Episode, sliceToString(episodeRange))
+	// episodeEndpointMultipleIds returns the ids in range to fetch multiple episodes
+	// See https://rickandmortyapi.com/documentation/#get-multiple-episodes
+	episodeEndpointMultipleIds := fmt.Sprintf("%s%s", Episode, sliceToString(episodeRange))
 
-	episodeData, _ := getReq(episodeWithIdsURL)
+	episodeData, _ := getReq(episodeEndpointMultipleIds)
 	err := json.Unmarshal(episodeData, &episodeResults)
 	if err != nil {
 		log.Fatal(err.Error())
@@ -47,15 +49,14 @@ func getEpisodes() iEpisodes {
 // Counts the ocurrence of a certain character in the EpisodeResult.Name field
 func (c *EpisodeObj) countChar(char string) int {
 	var count int
-	for _, v := range c.episodes {
-		count += strings.Count(v.Name, char)
+	for _, episode := range c.episodes {
+		count += strings.Count(episode.Name, char)
 	}
 	return count
 }
 
 // EpisodeWithCharIds is similar to EpisodeResults struct
 // however, it stores the ids of the characters instead of the endpoint
-// of every character
 type EpisodeWithCharIds struct {
 	EpisodeName  string
 	EpisodeCode  string
@@ -64,22 +65,20 @@ type EpisodeWithCharIds struct {
 
 // characterIds maps every episode with a slice containing
 // the characters ids that appeared in said episode
-// func (e *EpisodeObj) characterIdsPerEpisode() CharIdsEpisodeObj {
 func (e *EpisodeObj) characterIds() []EpisodeWithCharIds {
-	charIdsSlc := make(map[string][]string)
+	characterIdsMap := make(map[string][]string)
 	var charIds []EpisodeWithCharIds
-	for _, epsds := range e.episodes {
-		for _, chr := range epsds.Characters {
-			idIndex := strings.LastIndex(chr, "/")
-			charIdsSlc[epsds.Episode] = append(charIdsSlc[epsds.Episode], chr[idIndex+1:])
+	for _, episode := range e.episodes {
+		for _, character := range episode.Characters {
+			idIndex := strings.LastIndex(character, "/")
+			characterIdsMap[episode.Episode] = append(characterIdsMap[episode.Episode], character[idIndex+1:])
 		}
 		charIdsSingle := EpisodeWithCharIds{
-			EpisodeName:  epsds.Name,
-			EpisodeCode:  epsds.Episode,
-			CharacterIds: charIdsSlc[epsds.Episode],
+			EpisodeName:  episode.Name,
+			EpisodeCode:  episode.Episode,
+			CharacterIds: characterIdsMap[episode.Episode],
 		}
 		charIds = append(charIds, charIdsSingle)
 	}
-	// return CharIdsEpisodeObj{CharIds: charIds}
 	return charIds
 }
