@@ -29,9 +29,11 @@ func getLocations() iLocation {
 	var locResults []LocationResults
 	locationsNumber := getInfo(Location).Count
 	locationsRange := makeRange(1, locationsNumber)
-	locationWithIdsURL := fmt.Sprintf("%s%s", Location, sliceToString(locationsRange))
+	// locationEndpointMultipleIds returns the ids in range to fetch multiple episodes
+	// See https://rickandmortyapi.com/documentation/#get-multiple-locations
+	locationEndpointMultipleIds := fmt.Sprintf("%s%s", Location, sliceToString(locationsRange))
 
-	locationData, _ := getReq(locationWithIdsURL)
+	locationData, _ := getReq(locationEndpointMultipleIds)
 	err := json.Unmarshal(locationData, &locResults)
 	if err != nil {
 		log.Fatal(err.Error())
@@ -43,8 +45,8 @@ func getLocations() iLocation {
 // Counts the ocurrence of a certain character in the LocationResults.Name field
 func (loc *LocationsObj) countChar(char string) int {
 	var count int
-	for _, v := range loc.locations {
-		count += strings.Count(v.Name, char)
+	for _, location := range loc.locations {
+		count += strings.Count(location.Name, char)
 	}
 	return count
 }

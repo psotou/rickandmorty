@@ -34,25 +34,27 @@ type CharacterOrigin struct {
 // the iCharacter interface. This approach allows for the use of a syntax
 // like getCharacters().countChar() declared in one line
 func getCharacters() iCharacter {
-	var charResults []CharacterResults
+	var characterResults []CharacterResults
 	characterNumber := getInfo(Character).Count
 	characterRange := makeRange(1, characterNumber)
-	characterWithIdsURL := fmt.Sprintf("%s%s", Character, sliceToString(characterRange))
+	// characterEndpointMultipleIds returns the ids in range to fetch multiple characters
+	// See https://rickandmortyapi.com/documentation/#get-multiple-characters
+	characterEndpointMultipleIds := fmt.Sprintf("%s%s", Character, sliceToString(characterRange))
 
-	characterData, _ := getReq(characterWithIdsURL)
-	err := json.Unmarshal(characterData, &charResults)
+	characterData, _ := getReq(characterEndpointMultipleIds)
+	err := json.Unmarshal(characterData, &characterResults)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	return &CharacterObj{characters: charResults}
+	return &CharacterObj{characters: characterResults}
 }
 
 // countChar method implemented on the CharacterObj struct
 // Counts the ocurrence of a certain character in the CharacterResult.Name field
 func (c *CharacterObj) countChar(char string) int {
 	var count int
-	for _, v := range c.characters {
-		count += strings.Count(v.Name, char)
+	for _, character := range c.characters {
+		count += strings.Count(character.Name, char)
 	}
 	return count
 }
@@ -61,9 +63,9 @@ func (c *CharacterObj) countChar(char string) int {
 // returns a map with character id and the location (origin) name for that character
 func (c *CharacterObj) locationName() map[string]string {
 	charIdOrigin := make(map[string]string)
-	for _, v := range c.characters {
-		strId := strconv.Itoa(v.Id)
-		charIdOrigin[strId] = v.Location.Name
+	for _, character := range c.characters {
+		strId := strconv.Itoa(character.Id)
+		charIdOrigin[strId] = character.Location.Name
 	}
 	return charIdOrigin
 }
