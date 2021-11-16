@@ -53,7 +53,7 @@ func charCounterResult() CharCounter {
 	}
 	elapsed := time.Since(start)
 	var intime bool
-	if elapsed < time.Duration(3*1e9) {
+	if elapsed < time.Duration(3e9) {
 		intime = true
 	}
 

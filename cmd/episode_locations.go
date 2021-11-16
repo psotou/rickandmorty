@@ -47,7 +47,7 @@ func episodeLocationsResult() EpiLocations {
 
 	var intime bool
 	elapsed := time.Since(start)
-	if elapsed < time.Duration(3*1e6) {
+	if elapsed < time.Duration(3e9) {
 		intime = true
 	}
 

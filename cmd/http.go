@@ -13,6 +13,29 @@ const (
 	Character = "character/"
 )
 
+// HTTP client interface which allows to set instances of
+// either http.Client or our mock http client
+type HTTPClient interface {
+	Do(req *http.Request) (*http.Response, error)
+}
+
+var Client HTTPClient
+
+func init() {
+	Client = &http.Client{}
+}
+
+// MockClient sets the function that our mock Do method will run
+// instead of the http.Client.Do method
+type MockClient struct {
+	DoFunc func(req *http.Request) (*http.Response, error)
+}
+
+// Do method that overrides the http.Client.Do method
+func (m *MockClient) Do(req *http.Request) (*http.Response, error) {
+	return m.DoFunc(req)
+}
+
 func formatURL(endpoint string) string {
 	return fmt.Sprintf("%s%s", BaseURL, endpoint)
 }
@@ -24,8 +47,9 @@ func requestMethod(reqMethod, endpoint string) (*http.Response, error) {
 		return nil, err
 	}
 
-	client := &http.Client{}
-	res, err := client.Do(req)
+	// client := &http.Client{}
+	// res, err := client.Do(req)
+	res, err := Client.Do(req)
 	if err != nil {
 		return nil, err
 	}
