@@ -1,0 +1,22 @@
+{
+  "exercise_name": "Char counter",
+  "time": "809.549167ms",
+  "in_time": true,
+  "results": [
+    {
+      "char": "l",
+      "count": 79,
+      "resource": "location"
+    },
+    {
+      "char": "e",
+      "count": 85,
+      "resource": "epsidode"
+    },
+    {
+      "char": "c",
+      "count": 355,
+      "resource": "character"
+    }
+  ]
+}
