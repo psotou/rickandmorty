@@ -10,22 +10,20 @@ import (
 )
 
 func Test_getCharacters(t *testing.T) {
-	tests := []struct {
+	tests := struct {
 		name string
 		want iCharacter
 	}{
-		{
-			name: "returns the characters object",
-			want: characterInterfaceGenerator(),
-		},
+		name: "returns the characters object",
+		want: characterInterfaceGenerator(),
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := getCharacters(); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("getCharacters() = %v, want %v", got, tt.want)
-			}
-		})
-	}
+
+	rng := makeRange(1, 5)
+	t.Run(tests.name, func(t *testing.T) {
+		if got := getCharacters(rng); !reflect.DeepEqual(got, tests.want) {
+			t.Errorf("getCharacters() = %v, want %v", got, tests.want)
+		}
+	})
 }
 
 func TestCharacterObj_countChar(t *testing.T) {
@@ -35,61 +33,59 @@ func TestCharacterObj_countChar(t *testing.T) {
 	type args struct {
 		char string
 	}
-	tests := []struct {
+	tests := struct {
 		name   string
 		fields fields
 		args   args
 		want   int
 	}{
-		{
-			name:   "the ocurrence of a certain character in the field name",
-			fields: fields{characterObjGenerator().characters},
-			args:   args{"a"},
-			want:   710,
-		},
+		name:   "the ocurrence of a certain character in the field name",
+		fields: fields{characterObjGenerator().characters},
+		args:   args{"c"},
+		want:   2,
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			c := &CharacterObj{
-				characters: tt.fields.characters,
-			}
-			if got := c.countChar(tt.args.char); got != tt.want {
-				t.Errorf("CharacterObj.countChar() = %v, want %v", got, tt.want)
-			}
-		})
-	}
+
+	t.Run(tests.name, func(t *testing.T) {
+		c := &CharacterObj{
+			characters: tests.fields.characters,
+		}
+		if got := c.countChar(tests.args.char); got != tests.want {
+			t.Errorf("CharacterObj.countChar() = %v, want %v", got, tests.want)
+		}
+	})
 }
 
 func TestCharacterObj_locationName(t *testing.T) {
 	type fields struct {
 		characters []CharacterResults
 	}
-	tests := []struct {
+	tests := struct {
 		name   string
 		fields fields
 		want   map[string]string
 	}{
-		{
-			name:   "",
-			fields: fields{characterObjGenerator().characters},
-			want:   locationNameGenerator(),
-		},
+		name:   "",
+		fields: fields{characterObjGenerator().characters},
+		want:   locationNameGenerator(),
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			c := &CharacterObj{
-				characters: tt.fields.characters,
-			}
-			if got := c.locationName(); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("CharacterObj.locationName() = %v, want %v", got, tt.want)
-			}
-		})
-	}
+
+	t.Run(tests.name, func(t *testing.T) {
+		c := &CharacterObj{
+			characters: tests.fields.characters,
+		}
+		if got := c.locationName(); !reflect.DeepEqual(got, tests.want) {
+			t.Errorf("CharacterObj.locationName() = %v, want %v", got, tests.want)
+		}
+	})
 }
 
+//
+// Helper methods for the character testing
+//
 func characterInterfaceGenerator() iCharacter {
-	var charRes []CharacterResults
-	jsonFile, _ := os.Open("fixtures/character.json")
+	charRes := []CharacterResults{}
+	// jsonFile, _ := os.Open("fixtures/character.json")
+	jsonFile, _ := os.Open("fix/character.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)
@@ -103,8 +99,9 @@ func characterInterfaceGenerator() iCharacter {
 }
 
 func characterObjGenerator() CharacterObj {
-	var charRes []CharacterResults
-	jsonFile, _ := os.Open("fixtures/character.json")
+	charRes := []CharacterResults{}
+	// jsonFile, _ := os.Open("fixtures/character.json")
+	jsonFile, _ := os.Open("fix/character.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)
@@ -118,8 +115,9 @@ func characterObjGenerator() CharacterObj {
 }
 
 func locationNameGenerator() map[string]string {
-	var charRes = make(map[string]string)
-	jsonFile, _ := os.Open("fixtures/location_names.json")
+	charRes := make(map[string]string)
+	// jsonFile, _ := os.Open("fixtures/location_names.json")
+	jsonFile, _ := os.Open("fix/location_names.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)

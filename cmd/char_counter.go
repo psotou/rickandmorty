@@ -18,21 +18,25 @@ type CharCounterResults struct {
 	Resource string `json:"resource"`
 }
 
+var (
+	count int
+	char  string
+)
+
 func charCounter(resource string) CharCounterResults {
-	var (
-		count int
-		char  string
-	)
 	switch resource {
 	case "location":
 		char = "l"
-		count = getLocations().countChar(char)
+		rng := makeRange(1, getInfo(Location).Count)
+		count = getLocations(rng).countChar(char)
 	case "epsidode":
 		char = "e"
+		// rng := makeRange(1, getInfo(Episode).Count)
 		count = getEpisodes().countChar(char)
 	case "character":
 		char = "c"
-		count = getCharacters().countChar(char)
+		rng := makeRange(1, getInfo(Character).Count)
+		count = getCharacters(rng).countChar(char)
 	}
 
 	res := CharCounterResults{
@@ -46,8 +50,8 @@ func charCounter(resource string) CharCounterResults {
 
 func charCounterResult() CharCounter {
 	start := time.Now()
+	res := []CharCounterResults{}
 	charCounterResources := []string{"location", "epsidode", "character"}
-	var res []CharCounterResults
 	for _, resource := range charCounterResources {
 		res = append(res, charCounter(resource))
 	}
