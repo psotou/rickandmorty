@@ -10,22 +10,20 @@ import (
 )
 
 func Test_getEpisodes(t *testing.T) {
-	tests := []struct {
+	tests := struct {
 		name string
 		want iEpisodes
 	}{
-		{
-			name: "returns the episode object",
-			want: episodeInterfaceGenerator(),
-		},
+		name: "returns the episode object",
+		want: episodeInterfaceGenerator(),
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := getEpisodes(); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("getEpisodes() = %v, want %v", got, tt.want)
-			}
-		})
-	}
+
+	rng := makeRange(1, 5)
+	t.Run(tests.name, func(t *testing.T) {
+		if got := getEpisodes(rng); !reflect.DeepEqual(got, tests.want) {
+			t.Errorf("getEpisodes() = %v, want %v", got, tests.want)
+		}
+	})
 }
 
 func TestEpisodeObj_countChar(t *testing.T) {
@@ -35,61 +33,59 @@ func TestEpisodeObj_countChar(t *testing.T) {
 	type args struct {
 		char string
 	}
-	tests := []struct {
+	tests := struct {
 		name   string
 		fields fields
 		args   args
 		want   int
 	}{
-		{
-			name:   "counts the ocurrence of a certain character in the field name",
-			fields: fields{episodeObjGenerator().episodes},
-			args:   args{"i"},
-			want:   95,
-		},
+		name:   "counts the ocurrence of a certain character in the field name",
+		fields: fields{episodeObjGenerator().episodes},
+		args:   args{"e"},
+		want:   7,
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			c := &EpisodeObj{
-				episodes: tt.fields.episodes,
-			}
-			if got := c.countChar(tt.args.char); got != tt.want {
-				t.Errorf("EpisodeObj.countChar() = %v, want %v", got, tt.want)
-			}
-		})
-	}
+
+	t.Run(tests.name, func(t *testing.T) {
+		c := &EpisodeObj{
+			episodes: tests.fields.episodes,
+		}
+		if got := c.countChar(tests.args.char); got != tests.want {
+			t.Errorf("EpisodeObj.countChar() = %v, want %v", got, tests.want)
+		}
+	})
 }
 
 func TestEpisodeObj_characterIds(t *testing.T) {
 	type fields struct {
 		episodes []EpisodeResults
 	}
-	tests := []struct {
+	tests := struct {
 		name   string
 		fields fields
 		want   []EpisodeWithCharIds
 	}{
-		{
-			name:   "",
-			fields: fields{episodeObjGenerator().episodes},
-			want:   episodeCharIdsGenerator(),
-		},
+		name:   "",
+		fields: fields{episodeObjGenerator().episodes},
+		want:   episodeCharIdsGenerator(),
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			e := &EpisodeObj{
-				episodes: tt.fields.episodes,
-			}
-			if got := e.characterIds(); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("EpisodeObj.characterIds() = %v, want %v", got, tt.want)
-			}
-		})
-	}
+
+	t.Run(tests.name, func(t *testing.T) {
+		e := &EpisodeObj{
+			episodes: tests.fields.episodes,
+		}
+		if got := e.characterIds(); !reflect.DeepEqual(got, tests.want) {
+			t.Errorf("EpisodeObj.characterIds() = %v, want %v", got, tests.want)
+		}
+	})
 }
 
+//
+// Helper methods for the episode testing
+//
 func episodeInterfaceGenerator() iEpisodes {
-	var epiRes []EpisodeResults
-	jsonFile, _ := os.Open("fixtures/episode.json")
+	epiRes := []EpisodeResults{}
+	// jsonFile, _ := os.Open("fixtures/episode.json")
+	jsonFile, _ := os.Open("fix/episode.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)
@@ -103,8 +99,9 @@ func episodeInterfaceGenerator() iEpisodes {
 }
 
 func episodeObjGenerator() EpisodeObj {
-	var epiRes []EpisodeResults
-	jsonFile, _ := os.Open("fixtures/episode.json")
+	epiRes := []EpisodeResults{}
+	// jsonFile, _ := os.Open("fixtures/episode.json")
+	jsonFile, _ := os.Open("fix/episode.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)
@@ -118,8 +115,9 @@ func episodeObjGenerator() EpisodeObj {
 }
 
 func episodeCharIdsGenerator() []EpisodeWithCharIds {
-	var epiRes []EpisodeWithCharIds
-	jsonFile, _ := os.Open("fixtures/character_ids.json")
+	epiRes := []EpisodeWithCharIds{}
+	// jsonFile, _ := os.Open("fixtures/character_ids.json")
+	jsonFile, _ := os.Open("fix/character_ids.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)

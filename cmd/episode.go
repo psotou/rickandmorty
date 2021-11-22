@@ -29,10 +29,8 @@ type EpisodeResults struct {
 // getEpisodes embeds EpisodeObj struct and indirectly implements
 // the iEpisodes interface. This approach allows for the use of a syntax
 // like getEpisodes().countChar() declared in one line
-func getEpisodes() iEpisodes {
+func getEpisodes(episodeRange []string) iEpisodes {
 	var episodeResults []EpisodeResults
-	episodeNumber := getInfo(Episode).Count
-	episodeRange := makeRange(1, episodeNumber)
 	// episodeEndpointMultipleIds returns the ids in range to fetch multiple episodes
 	// See https://rickandmortyapi.com/documentation/#get-multiple-episodes
 	episodeEndpointMultipleIds := fmt.Sprintf("%s%s", Episode, sliceToString(episodeRange))

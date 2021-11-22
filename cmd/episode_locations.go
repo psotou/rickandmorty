@@ -41,9 +41,11 @@ func episodeLocations(characterIdLocationMap map[string]string, epiCharIds []Epi
 
 func episodeLocationsResult() EpiLocations {
 	start := time.Now()
-	rng := makeRange(1, getInfo(Character).Count)
-	charIdAndLoc := getCharacters(rng).locationName()
-	epiAndCharIds := getEpisodes().characterIds()
+	rngchar := makeRange(1, getInfo(Character).Count)
+	charIdAndLoc := getCharacters(rngchar).locationName()
+
+	rngepi := makeRange(1, getInfo(Episode).Count)
+	epiAndCharIds := getEpisodes(rngepi).characterIds()
 	epiLocations := episodeLocations(charIdAndLoc, epiAndCharIds)
 
 	var intime bool

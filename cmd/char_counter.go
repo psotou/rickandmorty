@@ -31,8 +31,8 @@ func charCounter(resource string) CharCounterResults {
 		count = getLocations(rng).countChar(char)
 	case "epsidode":
 		char = "e"
-		// rng := makeRange(1, getInfo(Episode).Count)
-		count = getEpisodes().countChar(char)
+		rng := makeRange(1, getInfo(Episode).Count)
+		count = getEpisodes(rng).countChar(char)
 	case "character":
 		char = "c"
 		rng := makeRange(1, getInfo(Character).Count)
