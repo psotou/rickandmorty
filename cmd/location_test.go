@@ -10,22 +10,20 @@ import (
 )
 
 func Test_getLocations(t *testing.T) {
-	tests := []struct {
+	tests := struct {
 		name string
 		want iLocation
 	}{
-		{
-			name: "returns the location object",
-			want: locationInterfaceGenerator(),
-		},
+		name: "returns the location object",
+		want: locationInterfaceGenerator(),
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := getLocations(); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("getLocations() = %v, want %v", got, tt.want)
-			}
-		})
-	}
+
+	rng := makeRange(1, 5)
+	t.Run(tests.name, func(t *testing.T) {
+		if got := getLocations(rng); !reflect.DeepEqual(got, tests.want) {
+			t.Errorf("getLocations() = %v, want %v", got, tests.want)
+		}
+	})
 }
 
 func TestLocationsObj_countChar(t *testing.T) {
@@ -35,34 +33,32 @@ func TestLocationsObj_countChar(t *testing.T) {
 	type args struct {
 		char string
 	}
-	tests := []struct {
+	tests := struct {
 		name   string
 		fields fields
 		args   args
 		want   int
 	}{
-		{
-			name:   "counts the ocurrence of a certain character in the field name",
-			fields: fields{locationObjGenerator().locations},
-			args:   args{"e"},
-			want:   955,
-		},
+		name:   "counts the ocurrence of a certain character in the field name",
+		fields: fields{locationObjGenerator().locations},
+		args:   args{"l"},
+		want:   3,
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			loc := &LocationsObj{
-				locations: tt.fields.locations,
-			}
-			if got := loc.countChar(tt.args.char); got != tt.want {
-				t.Errorf("LocationsObj.countChar() = %v, want %v", got, tt.want)
-			}
-		})
-	}
+
+	t.Run(tests.name, func(t *testing.T) {
+		loc := &LocationsObj{
+			locations: tests.fields.locations,
+		}
+		if got := loc.countChar(tests.args.char); got != tests.want {
+			t.Errorf("LocationsObj.countChar() = %v, want %v", got, tests.want)
+		}
+	})
 }
 
 func locationInterfaceGenerator() iLocation {
 	var locRes []LocationResults
-	jsonFile, _ := os.Open("fixtures/location.json")
+	// jsonFile, _ := os.Open("fixtures/location.json")
+	jsonFile, _ := os.Open("fix/location.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)
@@ -77,7 +73,8 @@ func locationInterfaceGenerator() iLocation {
 
 func locationObjGenerator() LocationsObj {
 	var locRes []LocationResults
-	jsonFile, _ := os.Open("fixtures/character.json")
+	// jsonFile, _ := os.Open("fixtures/character.json")
+	jsonFile, _ := os.Open("fix/location.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)
