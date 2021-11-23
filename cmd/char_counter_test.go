@@ -21,15 +21,15 @@ func Test_charCounterResult(t *testing.T) {
 	resourceRangeOfIds := []ResourceRange{
 		{
 			Resource: "location",
-			Range:    makeRange(1, 5),
+			Range:    []string{"1", "2", "3", "4", "5"},
 		},
 		{
 			Resource: "episode",
-			Range:    makeRange(1, 5),
+			Range:    []string{"1", "2", "3", "4", "5"},
 		},
 		{
 			Resource: "character",
-			Range:    makeRange(1, 5),
+			Range:    []string{"1", "2", "3", "4", "5"},
 		},
 	}
 

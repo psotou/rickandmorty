@@ -15,6 +15,9 @@ type FinalResult struct {
 }
 
 func finalResult() iFinalRes {
+	//
+	// char counter part
+	//
 	resourceRangeOfIds := []ResourceRange{
 		{
 			Resource: "location",
@@ -30,7 +33,12 @@ func finalResult() iFinalRes {
 		},
 	}
 	charCount := charCounterResult(resourceRangeOfIds)
-	locNames := episodeLocationsResult()
+
+	//
+	// location (origin) name part
+	//
+	rangeEpiIds := makeRange(1, getInfo(Episode).Count)
+	locNames := episodeLocationsResult(rangeEpiIds)
 	res := []interface{}{charCount, locNames}
 	dataBytes, err := json.Marshal(res)
 	if err != nil {

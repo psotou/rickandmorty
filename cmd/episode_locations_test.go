@@ -10,29 +10,27 @@ import (
 )
 
 func Test_episodeLocationsResult(t *testing.T) {
-	tests := []struct {
+	tests := struct {
 		name string
-		// want EpiLocations
 		want []EpisodeLocations
 	}{
-		{
-			name: "",
-			// want: []EpisodeLocations{},
-			want: episodeLocationsGenerator(),
-		},
+		name: "",
+		want: episodeLocationsGenerator(),
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := episodeLocationsResult().Results; !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("episodeLocationsResult() = %v, want %v", got, tt.want)
-			}
-		})
-	}
+
+	rangeEpiIds := []string{"1", "2", "3", "4", "5"}
+
+	t.Run(tests.name, func(t *testing.T) {
+		if got := episodeLocationsResult(rangeEpiIds).Results; !reflect.DeepEqual(got, tests.want) {
+			t.Errorf("episodeLocationsResult() = %v, want %v", got, tests.want)
+		}
+	})
 }
 
 func episodeLocationsGenerator() []EpisodeLocations {
 	var epiRes EpiLocations
-	jsonFile, _ := os.Open("fixtures/episode_location.json")
+	// jsonFile, _ := os.Open("fixtures/episode_location.json")
+	jsonFile, _ := os.Open("fix/episode_location.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)

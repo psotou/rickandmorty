@@ -39,13 +39,15 @@ func episodeLocations(characterIdLocationMap map[string]string, epiCharIds []Epi
 	return episodeLocationsSlc
 }
 
-func episodeLocationsResult() EpiLocations {
+// episodeLocationsResult() only takes the range of ids of episodes and
+// runs those against the whole universe of characters since there may be
+// a lot of characters per episode
+func episodeLocationsResult(rangeEpiIds []string) EpiLocations {
 	start := time.Now()
-	rngchar := makeRange(1, getInfo(Character).Count)
-	charIdAndLoc := getCharacters(rngchar).locationName()
+	rangeCharIds := makeRange(1, getInfo(Character).Count)
+	charIdAndLoc := getCharacters(rangeCharIds).locationName()
 
-	rngepi := makeRange(1, getInfo(Episode).Count)
-	epiAndCharIds := getEpisodes(rngepi).characterIds()
+	epiAndCharIds := getEpisodes(rangeEpiIds).characterIds()
 	epiLocations := episodeLocations(charIdAndLoc, epiAndCharIds)
 
 	var intime bool
