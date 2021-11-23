@@ -18,7 +18,7 @@ func Test_getEpisodes(t *testing.T) {
 		want: episodeInterfaceGenerator(),
 	}
 
-	rng := makeRange(1, 5)
+	rng := []string{"1", "2", "3", "4", "5"}
 	t.Run(tests.name, func(t *testing.T) {
 		if got := getEpisodes(rng); !reflect.DeepEqual(got, tests.want) {
 			t.Errorf("getEpisodes() = %v, want %v", got, tests.want)

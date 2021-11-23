@@ -18,7 +18,7 @@ func Test_getCharacters(t *testing.T) {
 		want: characterInterfaceGenerator(),
 	}
 
-	rng := makeRange(1, 5)
+	rng := []string{"1", "2", "3", "4", "5"}
 	t.Run(tests.name, func(t *testing.T) {
 		if got := getCharacters(rng); !reflect.DeepEqual(got, tests.want) {
 			t.Errorf("getCharacters() = %v, want %v", got, tests.want)

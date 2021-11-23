@@ -18,7 +18,7 @@ func Test_getLocations(t *testing.T) {
 		want: locationInterfaceGenerator(),
 	}
 
-	rng := makeRange(1, 5)
+	rng := []string{"1", "2", "3", "4", "5"}
 	t.Run(tests.name, func(t *testing.T) {
 		if got := getLocations(rng); !reflect.DeepEqual(got, tests.want) {
 			t.Errorf("getLocations() = %v, want %v", got, tests.want)
