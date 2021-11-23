@@ -1,506 +1,201 @@
 [
   {
     "id": 1,
-    "name": "Earth (C-137)"
+    "name": "Earth (C-137)",
+    "type": "Planet",
+    "dimension": "Dimension C-137",
+    "residents": [
+      "https://rickandmortyapi.com/api/character/38",
+      "https://rickandmortyapi.com/api/character/45",
+      "https://rickandmortyapi.com/api/character/71",
+      "https://rickandmortyapi.com/api/character/82",
+      "https://rickandmortyapi.com/api/character/83",
+      "https://rickandmortyapi.com/api/character/92",
+      "https://rickandmortyapi.com/api/character/112",
+      "https://rickandmortyapi.com/api/character/114",
+      "https://rickandmortyapi.com/api/character/116",
+      "https://rickandmortyapi.com/api/character/117",
+      "https://rickandmortyapi.com/api/character/120",
+      "https://rickandmortyapi.com/api/character/127",
+      "https://rickandmortyapi.com/api/character/155",
+      "https://rickandmortyapi.com/api/character/169",
+      "https://rickandmortyapi.com/api/character/175",
+      "https://rickandmortyapi.com/api/character/179",
+      "https://rickandmortyapi.com/api/character/186",
+      "https://rickandmortyapi.com/api/character/201",
+      "https://rickandmortyapi.com/api/character/216",
+      "https://rickandmortyapi.com/api/character/239",
+      "https://rickandmortyapi.com/api/character/271",
+      "https://rickandmortyapi.com/api/character/302",
+      "https://rickandmortyapi.com/api/character/303",
+      "https://rickandmortyapi.com/api/character/338",
+      "https://rickandmortyapi.com/api/character/343",
+      "https://rickandmortyapi.com/api/character/356",
+      "https://rickandmortyapi.com/api/character/394"
+    ],
+    "url": "https://rickandmortyapi.com/api/location/1",
+    "created": "2017-11-10T12:42:04.162Z"
   },
   {
     "id": 2,
-    "name": "Abadango"
+    "name": "Abadango",
+    "type": "Cluster",
+    "dimension": "unknown",
+    "residents": [
+      "https://rickandmortyapi.com/api/character/6"
+    ],
+    "url": "https://rickandmortyapi.com/api/location/2",
+    "created": "2017-11-10T13:06:38.182Z"
   },
   {
     "id": 3,
-    "name": "Citadel of Ricks"
+    "name": "Citadel of Ricks",
+    "type": "Space station",
+    "dimension": "unknown",
+    "residents": [
+      "https://rickandmortyapi.com/api/character/8",
+      "https://rickandmortyapi.com/api/character/14",
+      "https://rickandmortyapi.com/api/character/15",
+      "https://rickandmortyapi.com/api/character/18",
+      "https://rickandmortyapi.com/api/character/21",
+      "https://rickandmortyapi.com/api/character/22",
+      "https://rickandmortyapi.com/api/character/27",
+      "https://rickandmortyapi.com/api/character/42",
+      "https://rickandmortyapi.com/api/character/43",
+      "https://rickandmortyapi.com/api/character/44",
+      "https://rickandmortyapi.com/api/character/48",
+      "https://rickandmortyapi.com/api/character/53",
+      "https://rickandmortyapi.com/api/character/56",
+      "https://rickandmortyapi.com/api/character/61",
+      "https://rickandmortyapi.com/api/character/69",
+      "https://rickandmortyapi.com/api/character/72",
+      "https://rickandmortyapi.com/api/character/73",
+      "https://rickandmortyapi.com/api/character/74",
+      "https://rickandmortyapi.com/api/character/77",
+      "https://rickandmortyapi.com/api/character/78",
+      "https://rickandmortyapi.com/api/character/85",
+      "https://rickandmortyapi.com/api/character/86",
+      "https://rickandmortyapi.com/api/character/95",
+      "https://rickandmortyapi.com/api/character/118",
+      "https://rickandmortyapi.com/api/character/119",
+      "https://rickandmortyapi.com/api/character/123",
+      "https://rickandmortyapi.com/api/character/135",
+      "https://rickandmortyapi.com/api/character/143",
+      "https://rickandmortyapi.com/api/character/152",
+      "https://rickandmortyapi.com/api/character/164",
+      "https://rickandmortyapi.com/api/character/165",
+      "https://rickandmortyapi.com/api/character/187",
+      "https://rickandmortyapi.com/api/character/200",
+      "https://rickandmortyapi.com/api/character/206",
+      "https://rickandmortyapi.com/api/character/209",
+      "https://rickandmortyapi.com/api/character/220",
+      "https://rickandmortyapi.com/api/character/229",
+      "https://rickandmortyapi.com/api/character/231",
+      "https://rickandmortyapi.com/api/character/235",
+      "https://rickandmortyapi.com/api/character/267",
+      "https://rickandmortyapi.com/api/character/278",
+      "https://rickandmortyapi.com/api/character/281",
+      "https://rickandmortyapi.com/api/character/283",
+      "https://rickandmortyapi.com/api/character/284",
+      "https://rickandmortyapi.com/api/character/285",
+      "https://rickandmortyapi.com/api/character/286",
+      "https://rickandmortyapi.com/api/character/287",
+      "https://rickandmortyapi.com/api/character/288",
+      "https://rickandmortyapi.com/api/character/289",
+      "https://rickandmortyapi.com/api/character/291",
+      "https://rickandmortyapi.com/api/character/295",
+      "https://rickandmortyapi.com/api/character/298",
+      "https://rickandmortyapi.com/api/character/299",
+      "https://rickandmortyapi.com/api/character/322",
+      "https://rickandmortyapi.com/api/character/325",
+      "https://rickandmortyapi.com/api/character/328",
+      "https://rickandmortyapi.com/api/character/330",
+      "https://rickandmortyapi.com/api/character/345",
+      "https://rickandmortyapi.com/api/character/359",
+      "https://rickandmortyapi.com/api/character/366",
+      "https://rickandmortyapi.com/api/character/378",
+      "https://rickandmortyapi.com/api/character/385",
+      "https://rickandmortyapi.com/api/character/392",
+      "https://rickandmortyapi.com/api/character/461",
+      "https://rickandmortyapi.com/api/character/462",
+      "https://rickandmortyapi.com/api/character/463",
+      "https://rickandmortyapi.com/api/character/464",
+      "https://rickandmortyapi.com/api/character/465",
+      "https://rickandmortyapi.com/api/character/466",
+      "https://rickandmortyapi.com/api/character/472",
+      "https://rickandmortyapi.com/api/character/473",
+      "https://rickandmortyapi.com/api/character/474",
+      "https://rickandmortyapi.com/api/character/475",
+      "https://rickandmortyapi.com/api/character/476",
+      "https://rickandmortyapi.com/api/character/477",
+      "https://rickandmortyapi.com/api/character/478",
+      "https://rickandmortyapi.com/api/character/479",
+      "https://rickandmortyapi.com/api/character/480",
+      "https://rickandmortyapi.com/api/character/481",
+      "https://rickandmortyapi.com/api/character/482",
+      "https://rickandmortyapi.com/api/character/483",
+      "https://rickandmortyapi.com/api/character/484",
+      "https://rickandmortyapi.com/api/character/485",
+      "https://rickandmortyapi.com/api/character/486",
+      "https://rickandmortyapi.com/api/character/487",
+      "https://rickandmortyapi.com/api/character/488",
+      "https://rickandmortyapi.com/api/character/489",
+      "https://rickandmortyapi.com/api/character/2",
+      "https://rickandmortyapi.com/api/character/1",
+      "https://rickandmortyapi.com/api/character/801",
+      "https://rickandmortyapi.com/api/character/802",
+      "https://rickandmortyapi.com/api/character/803",
+      "https://rickandmortyapi.com/api/character/804",
+      "https://rickandmortyapi.com/api/character/805",
+      "https://rickandmortyapi.com/api/character/806",
+      "https://rickandmortyapi.com/api/character/810",
+      "https://rickandmortyapi.com/api/character/811",
+      "https://rickandmortyapi.com/api/character/812",
+      "https://rickandmortyapi.com/api/character/819",
+      "https://rickandmortyapi.com/api/character/820",
+      "https://rickandmortyapi.com/api/character/818"
+    ],
+    "url": "https://rickandmortyapi.com/api/location/3",
+    "created": "2017-11-10T13:08:13.191Z"
   },
   {
     "id": 4,
-    "name": "Worldender's lair"
+    "name": "Worldender's lair",
+    "type": "Planet",
+    "dimension": "unknown",
+    "residents": [
+      "https://rickandmortyapi.com/api/character/10",
+      "https://rickandmortyapi.com/api/character/81",
+      "https://rickandmortyapi.com/api/character/208",
+      "https://rickandmortyapi.com/api/character/226",
+      "https://rickandmortyapi.com/api/character/340",
+      "https://rickandmortyapi.com/api/character/362",
+      "https://rickandmortyapi.com/api/character/375",
+      "https://rickandmortyapi.com/api/character/382",
+      "https://rickandmortyapi.com/api/character/395"
+    ],
+    "url": "https://rickandmortyapi.com/api/location/4",
+    "created": "2017-11-10T13:08:20.569Z"
   },
   {
     "id": 5,
-    "name": "Anatomy Park"
-  },
-  {
-    "id": 6,
-    "name": "Interdimensional Cable"
-  },
-  {
-    "id": 7,
-    "name": "Immortality Field Resort"
-  },
-  {
-    "id": 8,
-    "name": "Post-Apocalyptic Earth"
-  },
-  {
-    "id": 9,
-    "name": "Purge Planet"
-  },
-  {
-    "id": 10,
-    "name": "Venzenulon 7"
-  },
-  {
-    "id": 11,
-    "name": "Bepis 9"
-  },
-  {
-    "id": 12,
-    "name": "Cronenberg Earth"
-  },
-  {
-    "id": 13,
-    "name": "Nuptia 4"
-  },
-  {
-    "id": 14,
-    "name": "Giant's Town"
-  },
-  {
-    "id": 15,
-    "name": "Bird World"
-  },
-  {
-    "id": 16,
-    "name": "St. Gloopy Noops Hospital"
-  },
-  {
-    "id": 17,
-    "name": "Earth (5-126)"
-  },
-  {
-    "id": 18,
-    "name": "Mr. Goldenfold's dream"
-  },
-  {
-    "id": 19,
-    "name": "Gromflom Prime"
-  },
-  {
-    "id": 20,
-    "name": "Earth (Replacement Dimension)"
-  },
-  {
-    "id": 21,
-    "name": "Testicle Monster Dimension"
-  },
-  {
-    "id": 22,
-    "name": "Signus 5 Expanse"
-  },
-  {
-    "id": 23,
-    "name": "Earth (C-500A)"
-  },
-  {
-    "id": 24,
-    "name": "Rick's Battery Microverse"
-  },
-  {
-    "id": 25,
-    "name": "The Menagerie"
-  },
-  {
-    "id": 26,
-    "name": "Earth (K-83)"
-  },
-  {
-    "id": 27,
-    "name": "Hideout Planet"
-  },
-  {
-    "id": 28,
-    "name": "Unity's Planet"
-  },
-  {
-    "id": 29,
-    "name": "Dorian 5"
-  },
-  {
-    "id": 30,
-    "name": "Earth (Unknown dimension)"
-  },
-  {
-    "id": 31,
-    "name": "Earth (J19ζ7)"
-  },
-  {
-    "id": 32,
-    "name": "Roy: A Life Well Lived"
-  },
-  {
-    "id": 33,
-    "name": "Eric Stoltz Mask Earth"
-  },
-  {
-    "id": 34,
-    "name": "Earth (Evil Rick's Target Dimension)"
-  },
-  {
-    "id": 35,
-    "name": "Planet Squanch"
-  },
-  {
-    "id": 36,
-    "name": "Glaagablaaga"
-  },
-  {
-    "id": 37,
-    "name": "Resort Planet"
-  },
-  {
-    "id": 38,
-    "name": "Interdimensional Customs"
-  },
-  {
-    "id": 39,
-    "name": "Galactic Federation Prison"
-  },
-  {
-    "id": 40,
-    "name": "Gazorpazorp"
-  },
-  {
-    "id": 41,
-    "name": "Hamster in Butt World"
-  },
-  {
-    "id": 42,
-    "name": "Earth (Giant Telepathic Spiders Dimension)"
-  },
-  {
-    "id": 43,
-    "name": "Alphabetrium"
-  },
-  {
-    "id": 44,
-    "name": "Jerryboree"
-  },
-  {
-    "id": 45,
-    "name": "Krootabulon"
-  },
-  {
-    "id": 46,
-    "name": "Zigerion's Base"
-  },
-  {
-    "id": 47,
-    "name": "Pluto"
-  },
-  {
-    "id": 48,
-    "name": "Fantasy World"
-  },
-  {
-    "id": 49,
-    "name": "Zeep Xanflorp's Miniverse"
-  },
-  {
-    "id": 50,
-    "name": "Kyle's Teenyverse"
-  },
-  {
-    "id": 51,
-    "name": "Larva Alien's Planet"
-  },
-  {
-    "id": 52,
-    "name": "Earth (K-22)"
-  },
-  {
-    "id": 53,
-    "name": "Mr. Meeseeks Box"
-  },
-  {
-    "id": 54,
-    "name": "Vindicator's Base"
-  },
-  {
-    "id": 55,
-    "name": "Pawn Shop Planet"
-  },
-  {
-    "id": 56,
-    "name": "Mega Gargantuan Kingdom"
-  },
-  {
-    "id": 57,
-    "name": "Gear World"
-  },
-  {
-    "id": 58,
-    "name": "Earth (D-99)"
-  },
-  {
-    "id": 59,
-    "name": "Earth (D716)"
-  },
-  {
-    "id": 60,
-    "name": "Earth (D716-B)"
-  },
-  {
-    "id": 61,
-    "name": "Earth (D716-C)"
-  },
-  {
-    "id": 62,
-    "name": "Earth (J-22)"
-  },
-  {
-    "id": 63,
-    "name": "Froopyland"
-  },
-  {
-    "id": 64,
-    "name": "Detoxifier"
-  },
-  {
-    "id": 65,
-    "name": "Trunk World"
-  },
-  {
-    "id": 66,
-    "name": "Plopstar"
-  },
-  {
-    "id": 67,
-    "name": "Blips and Chitz"
-  },
-  {
-    "id": 68,
-    "name": "Girvonesk"
-  },
-  {
-    "id": 69,
-    "name": "Earth (C-35)"
-  },
-  {
-    "id": 70,
-    "name": "Snuffles' Dream"
-  },
-  {
-    "id": 71,
-    "name": "Earth (Pizza Dimension)"
-  },
-  {
-    "id": 72,
-    "name": "Earth (Phone Dimension)"
-  },
-  {
-    "id": 73,
-    "name": "Greasy Grandma World"
-  },
-  {
-    "id": 74,
-    "name": "Earth (Chair Dimension)"
-  },
-  {
-    "id": 75,
-    "name": "Árboles Mentirosos"
-  },
-  {
-    "id": 76,
-    "name": "Alien Day Spa"
-  },
-  {
-    "id": 77,
-    "name": "Earth (Fascist Dimension)"
-  },
-  {
-    "id": 78,
-    "name": "Snake Planet"
-  },
-  {
-    "id": 79,
-    "name": "Forbodulon Prime"
-  },
-  {
-    "id": 80,
-    "name": "Earth (Fascist Shrimp Dimension)"
-  },
-  {
-    "id": 81,
-    "name": "Earth (Fascist Teddy Bear Dimension)"
-  },
-  {
-    "id": 82,
-    "name": "Earth (Wasp Dimension)"
-  },
-  {
-    "id": 83,
-    "name": "Monogatron Mothership"
-  },
-  {
-    "id": 84,
-    "name": "Gorgon Quadrant"
-  },
-  {
-    "id": 85,
-    "name": "Midland Quasar"
-  },
-  {
-    "id": 86,
-    "name": "Mount Space Everest"
-  },
-  {
-    "id": 87,
-    "name": "Globaflyn"
-  },
-  {
-    "id": 88,
-    "name": "Heist-Con"
-  },
-  {
-    "id": 89,
-    "name": "Heistotron Base"
-  },
-  {
-    "id": 90,
-    "name": "Mount Olympus"
-  },
-  {
-    "id": 91,
-    "name": "Plitzville Montana"
-  },
-  {
-    "id": 92,
-    "name": "Earth (Tusk Dimension)"
-  },
-  {
-    "id": 93,
-    "name": "Gramuflack"
-  },
-  {
-    "id": 94,
-    "name": "Draygon"
-  },
-  {
-    "id": 95,
-    "name": "New Improved Galactic Federation Quarters"
-  },
-  {
-    "id": 96,
-    "name": "Story Train"
-  },
-  {
-    "id": 97,
-    "name": "Non-Diegetic Alternative Reality"
-  },
-  {
-    "id": 98,
-    "name": "Tickets Please Guy Nightmare"
-  },
-  {
-    "id": 99,
-    "name": "Morty’s Story"
-  },
-  {
-    "id": 100,
-    "name": "Ricks’s Story"
-  },
-  {
-    "id": 101,
-    "name": "Glorzo Asteroid"
-  },
-  {
-    "id": 102,
-    "name": "Alien Acid Plant"
-  },
-  {
-    "id": 103,
-    "name": "Merged Universe"
-  },
-  {
-    "id": 104,
-    "name": "Near-Duplicate Reality"
-  },
-  {
-    "id": 105,
-    "name": "NX-5 Planet Remover"
-  },
-  {
-    "id": 106,
-    "name": "Gaia"
-  },
-  {
-    "id": 107,
-    "name": "Defiance's Ship"
-  },
-  {
-    "id": 108,
-    "name": "Defiance's Base"
-  },
-  {
-    "id": 109,
-    "name": "The Ocean"
-  },
-  {
-    "id": 110,
-    "name": "Narnia Dimension"
-  },
-  {
-    "id": 111,
-    "name": "Elemental Rings"
-  },
-  {
-    "id": 112,
-    "name": "Morglutz"
-  },
-  {
-    "id": 113,
-    "name": "Ferkus 9"
-  },
-  {
-    "id": 114,
-    "name": "Morty"
-  },
-  {
-    "id": 115,
-    "name": "Space"
-  },
-  {
-    "id": 116,
-    "name": "Hell"
-  },
-  {
-    "id": 117,
-    "name": "Z. Q. P. D."
-  },
-  {
-    "id": 118,
-    "name": "Space Tahoe"
-  },
-  {
-    "id": 119,
-    "name": "France"
-  },
-  {
-    "id": 120,
-    "name": "Birdperson's Consciousness"
-  },
-  {
-    "id": 121,
-    "name": "Rick's Consciousness"
-  },
-  {
-    "id": 122,
-    "name": "Avian Planet"
-  },
-  {
-    "id": 123,
-    "name": "Normal Size Bug Dimension"
-  },
-  {
-    "id": 124,
-    "name": "Slartivart"
-  },
-  {
-    "id": 125,
-    "name": "Rick and Two Crows Planet"
-  },
-  {
-    "id": 126,
-    "name": "Rick's Memories"
+    "name": "Anatomy Park",
+    "type": "Microverse",
+    "dimension": "Dimension C-137",
+    "residents": [
+      "https://rickandmortyapi.com/api/character/12",
+      "https://rickandmortyapi.com/api/character/17",
+      "https://rickandmortyapi.com/api/character/96",
+      "https://rickandmortyapi.com/api/character/97",
+      "https://rickandmortyapi.com/api/character/98",
+      "https://rickandmortyapi.com/api/character/99",
+      "https://rickandmortyapi.com/api/character/100",
+      "https://rickandmortyapi.com/api/character/101",
+      "https://rickandmortyapi.com/api/character/108",
+      "https://rickandmortyapi.com/api/character/268",
+      "https://rickandmortyapi.com/api/character/300"
+    ],
+    "url": "https://rickandmortyapi.com/api/location/5",
+    "created": "2017-11-10T13:08:46.060Z"
   }
 ]

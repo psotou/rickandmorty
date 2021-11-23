@@ -22,8 +22,8 @@ type EpisodeLocations struct {
 // and returns the locations per episode (unique values)
 func episodeLocations(characterIdLocationMap map[string]string, epiCharIds []EpisodeWithCharIds) []EpisodeLocations {
 	episodeLocationMap := make(map[string][]string)
-	var episodeLocationsSlc []EpisodeLocations
-	var episodeLocations EpisodeLocations
+	episodeLocationsSlc := []EpisodeLocations{}
+	episodeLocations := EpisodeLocations{}
 	for _, episode := range epiCharIds {
 		for _, characterId := range episode.CharacterIds {
 			episodeLocationMap[episode.EpisodeCode] = append(episodeLocationMap[episode.EpisodeCode], characterIdLocationMap[characterId])
@@ -39,10 +39,15 @@ func episodeLocations(characterIdLocationMap map[string]string, epiCharIds []Epi
 	return episodeLocationsSlc
 }
 
-func episodeLocationsResult() EpiLocations {
+// episodeLocationsResult() only takes the range of ids of episodes and
+// runs those against the whole universe of characters since there may be
+// a lot of characters per episode
+func episodeLocationsResult(rangeEpiIds []string) EpiLocations {
 	start := time.Now()
-	charIdAndLoc := getCharacters().locationName()
-	epiAndCharIds := getEpisodes().characterIds()
+	rangeCharIds := makeRange(1, getInfo(Character).Count)
+	charIdAndLoc := getCharacters(rangeCharIds).locationName()
+
+	epiAndCharIds := getEpisodes(rangeEpiIds).characterIds()
 	epiLocations := episodeLocations(charIdAndLoc, epiAndCharIds)
 
 	var intime bool

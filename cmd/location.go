@@ -25,10 +25,8 @@ type LocationResults struct {
 // getLocations embeds LocationsObj struct and indirectly implements
 // the iLocation interface. This approach allows for the use of a syntax
 // like getLocations().countChar() declared in one line
-func getLocations() iLocation {
-	var locResults []LocationResults
-	locationsNumber := getInfo(Location).Count
-	locationsRange := makeRange(1, locationsNumber)
+func getLocations(locationsRange []string) iLocation {
+	locResults := []LocationResults{}
 	// locationEndpointMultipleIds returns the ids in range to fetch multiple episodes
 	// See https://rickandmortyapi.com/documentation/#get-multiple-locations
 	locationEndpointMultipleIds := fmt.Sprintf("%s%s", Location, sliceToString(locationsRange))
@@ -44,7 +42,7 @@ func getLocations() iLocation {
 // countChar method implemented on the LocationsObj struct
 // Counts the ocurrence of a certain character in the LocationResults.Name field
 func (loc *LocationsObj) countChar(char string) int {
-	var count int
+	count := 0
 	for _, location := range loc.locations {
 		count += strings.Count(location.Name, char)
 	}

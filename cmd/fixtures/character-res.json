@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Rick Sanchez",
+    "origin": {
+      "name": "Earth (C-137)",
+      "url": "https://rickandmortyapi.com/api/location/1"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Morty Smith",
+    "origin": {
+      "name": "unknown",
+      "url": ""
+    }
+  },
+  {
+    "id": 3,
+    "name": "Summer Smith",
+    "origin": {
+      "name": "Earth (Replacement Dimension)",
+      "url": "https://rickandmortyapi.com/api/location/20"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Beth Smith",
+    "origin": {
+      "name": "Earth (Replacement Dimension)",
+      "url": "https://rickandmortyapi.com/api/location/20"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Jerry Smith",
+    "origin": {
+      "name": "Earth (Replacement Dimension)",
+      "url": "https://rickandmortyapi.com/api/location/20"
+    }
+  }
+]

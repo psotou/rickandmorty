@@ -33,10 +33,8 @@ type CharacterOrigin struct {
 // getCharacters embeds CharaterObj struct and indirectly implements
 // the iCharacter interface. This approach allows for the use of a syntax
 // like getCharacters().countChar() declared in one line
-func getCharacters() iCharacter {
-	var characterResults []CharacterResults
-	characterNumber := getInfo(Character).Count
-	characterRange := makeRange(1, characterNumber)
+func getCharacters(characterRange []string) iCharacter {
+	characterResults := []CharacterResults{}
 	// characterEndpointMultipleIds returns the ids in range to fetch multiple characters
 	// See https://rickandmortyapi.com/documentation/#get-multiple-characters
 	characterEndpointMultipleIds := fmt.Sprintf("%s%s", Character, sliceToString(characterRange))
@@ -52,7 +50,7 @@ func getCharacters() iCharacter {
 // countChar method implemented on the CharacterObj struct
 // Counts the ocurrence of a certain character in the CharacterResult.Name field
 func (c *CharacterObj) countChar(char string) int {
-	var count int
+	count := 0
 	for _, character := range c.characters {
 		count += strings.Count(character.Name, char)
 	}
