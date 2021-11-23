@@ -11,7 +11,7 @@ git clone https://github.com/psotou/rickandmortyapi.git
 And then run
 
 ```bash
-bin/rickandmorty
+bin/rmc
 ```
 
 This should produce a JSON file (results.json) in the same directory where you run the executable.
