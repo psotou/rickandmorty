@@ -42,8 +42,7 @@ func Test_charCounterResult(t *testing.T) {
 
 func charCounterGenerator() []CharCounterResults {
 	charRes := CharCounter{}
-	// jsonFile, _ := os.Open("fixtures/char_counter.json")
-	jsonFile, _ := os.Open("fix/char_counter.json")
+	jsonFile, _ := os.Open("fixtures/char_counter.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)

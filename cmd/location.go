@@ -42,7 +42,7 @@ func getLocations(locationsRange []string) iLocation {
 // countChar method implemented on the LocationsObj struct
 // Counts the ocurrence of a certain character in the LocationResults.Name field
 func (loc *LocationsObj) countChar(char string) int {
-	var count int
+	count := 0
 	for _, location := range loc.locations {
 		count += strings.Count(location.Name, char)
 	}

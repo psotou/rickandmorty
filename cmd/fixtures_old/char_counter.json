@@ -5,17 +5,17 @@
   "results": [
     {
       "char": "l",
-      "count": 3,
+      "count": 79,
       "resource": "location"
     },
     {
       "char": "e",
-      "count": 7,
-      "resource": "episode"
+      "count": 85,
+      "resource": "epsidode"
     },
     {
       "char": "c",
-      "count": 2,
+      "count": 355,
       "resource": "character"
     }
   ]

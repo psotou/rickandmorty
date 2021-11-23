@@ -28,9 +28,8 @@ func Test_episodeLocationsResult(t *testing.T) {
 }
 
 func episodeLocationsGenerator() []EpisodeLocations {
-	var epiRes EpiLocations
-	// jsonFile, _ := os.Open("fixtures/episode_location.json")
-	jsonFile, _ := os.Open("fix/episode_location.json")
+	epiRes := EpiLocations{}
+	jsonFile, _ := os.Open("fixtures/episode_location.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)

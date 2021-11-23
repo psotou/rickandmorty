@@ -84,8 +84,7 @@ func TestCharacterObj_locationName(t *testing.T) {
 //
 func characterInterfaceGenerator() iCharacter {
 	charRes := []CharacterResults{}
-	// jsonFile, _ := os.Open("fixtures/character.json")
-	jsonFile, _ := os.Open("fix/character.json")
+	jsonFile, _ := os.Open("fixtures/character.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)
@@ -100,8 +99,7 @@ func characterInterfaceGenerator() iCharacter {
 
 func characterObjGenerator() CharacterObj {
 	charRes := []CharacterResults{}
-	// jsonFile, _ := os.Open("fixtures/character.json")
-	jsonFile, _ := os.Open("fix/character.json")
+	jsonFile, _ := os.Open("fixtures/character.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)
@@ -116,8 +114,7 @@ func characterObjGenerator() CharacterObj {
 
 func locationNameGenerator() map[string]string {
 	charRes := make(map[string]string)
-	// jsonFile, _ := os.Open("fixtures/location_names.json")
-	jsonFile, _ := os.Open("fix/location_names.json")
+	jsonFile, _ := os.Open("fixtures/location_names.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)

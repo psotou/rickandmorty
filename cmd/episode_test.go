@@ -84,8 +84,7 @@ func TestEpisodeObj_characterIds(t *testing.T) {
 //
 func episodeInterfaceGenerator() iEpisodes {
 	epiRes := []EpisodeResults{}
-	// jsonFile, _ := os.Open("fixtures/episode.json")
-	jsonFile, _ := os.Open("fix/episode.json")
+	jsonFile, _ := os.Open("fixtures/episode.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)
@@ -100,8 +99,7 @@ func episodeInterfaceGenerator() iEpisodes {
 
 func episodeObjGenerator() EpisodeObj {
 	epiRes := []EpisodeResults{}
-	// jsonFile, _ := os.Open("fixtures/episode.json")
-	jsonFile, _ := os.Open("fix/episode.json")
+	jsonFile, _ := os.Open("fixtures/episode.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)
@@ -116,8 +114,7 @@ func episodeObjGenerator() EpisodeObj {
 
 func episodeCharIdsGenerator() []EpisodeWithCharIds {
 	epiRes := []EpisodeWithCharIds{}
-	// jsonFile, _ := os.Open("fixtures/character_ids.json")
-	jsonFile, _ := os.Open("fix/character_ids.json")
+	jsonFile, _ := os.Open("fixtures/character_ids.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)

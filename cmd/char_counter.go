@@ -23,8 +23,6 @@ type ResourceRange struct {
 	Range    []string
 }
 
-// func charCounter(resource string) CharCounterResults {
-// func charCounter(resource string, idsRange []string) CharCounterResults {
 func charCounter(resource ResourceRange) CharCounterResults {
 	count := 0
 	char := ""

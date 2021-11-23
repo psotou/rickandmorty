@@ -19,7 +19,7 @@ type Inf struct {
 }
 
 func getInfo(endpoint string) Info {
-	var info Inf
+	info := Inf{}
 	infoData, _ := getReq(endpoint)
 	err := json.Unmarshal(infoData, &info)
 	if err != nil {

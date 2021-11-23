@@ -50,7 +50,7 @@ func getCharacters(characterRange []string) iCharacter {
 // countChar method implemented on the CharacterObj struct
 // Counts the ocurrence of a certain character in the CharacterResult.Name field
 func (c *CharacterObj) countChar(char string) int {
-	var count int
+	count := 0
 	for _, character := range c.characters {
 		count += strings.Count(character.Name, char)
 	}

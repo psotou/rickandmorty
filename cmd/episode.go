@@ -30,7 +30,7 @@ type EpisodeResults struct {
 // the iEpisodes interface. This approach allows for the use of a syntax
 // like getEpisodes().countChar() declared in one line
 func getEpisodes(episodeRange []string) iEpisodes {
-	var episodeResults []EpisodeResults
+	episodeResults := []EpisodeResults{}
 	// episodeEndpointMultipleIds returns the ids in range to fetch multiple episodes
 	// See https://rickandmortyapi.com/documentation/#get-multiple-episodes
 	episodeEndpointMultipleIds := fmt.Sprintf("%s%s", Episode, sliceToString(episodeRange))
@@ -46,7 +46,7 @@ func getEpisodes(episodeRange []string) iEpisodes {
 // countChar method implemented on the EpisodeObj struct
 // Counts the ocurrence of a certain character in the EpisodeResult.Name field
 func (c *EpisodeObj) countChar(char string) int {
-	var count int
+	count := 0
 	for _, episode := range c.episodes {
 		count += strings.Count(episode.Name, char)
 	}
@@ -65,7 +65,7 @@ type EpisodeWithCharIds struct {
 // the characters ids that appeared in said episode
 func (e *EpisodeObj) characterIds() []EpisodeWithCharIds {
 	characterIdsMap := make(map[string][]string)
-	var charIds []EpisodeWithCharIds
+	charIds := []EpisodeWithCharIds{}
 	for _, episode := range e.episodes {
 		for _, character := range episode.Characters {
 			idIndex := strings.LastIndex(character, "/")

@@ -22,8 +22,8 @@ type EpisodeLocations struct {
 // and returns the locations per episode (unique values)
 func episodeLocations(characterIdLocationMap map[string]string, epiCharIds []EpisodeWithCharIds) []EpisodeLocations {
 	episodeLocationMap := make(map[string][]string)
-	var episodeLocationsSlc []EpisodeLocations
-	var episodeLocations EpisodeLocations
+	episodeLocationsSlc := []EpisodeLocations{}
+	episodeLocations := EpisodeLocations{}
 	for _, episode := range epiCharIds {
 		for _, characterId := range episode.CharacterIds {
 			episodeLocationMap[episode.EpisodeCode] = append(episodeLocationMap[episode.EpisodeCode], characterIdLocationMap[characterId])

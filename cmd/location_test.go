@@ -59,9 +59,8 @@ func TestLocationsObj_countChar(t *testing.T) {
 // Helper methods for the locations testing
 //
 func locationInterfaceGenerator() iLocation {
-	var locRes []LocationResults
-	// jsonFile, _ := os.Open("fixtures/location.json")
-	jsonFile, _ := os.Open("fix/location.json")
+	locRes := []LocationResults{}
+	jsonFile, _ := os.Open("fixtures/location.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)
@@ -75,9 +74,8 @@ func locationInterfaceGenerator() iLocation {
 }
 
 func locationObjGenerator() LocationsObj {
-	var locRes []LocationResults
-	// jsonFile, _ := os.Open("fixtures/character.json")
-	jsonFile, _ := os.Open("fix/location.json")
+	locRes := []LocationResults{}
+	jsonFile, _ := os.Open("fixtures/location.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)
