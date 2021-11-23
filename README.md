@@ -2,13 +2,13 @@
 
 ### Generals 
 
-Personal approach to solve the Rick and Morty challenge. It provides the code and an executable for thouse who aren't really into Go (although you totally should, the language is awesome). So if you aren't a gopher, go clone this repo and then run the executable:
+Personal approach to solve the Rick and Morty challenge. It provides the code and an executable for thouse who aren't really into Go (although you totally should, the language is awesome). So if you aren't a gopher, go clone this repo
 
 ```bash
 git clone https://github.com/psotou/rickandmortyapi.git
 ```
 
-And then run
+and then run
 
 ```bash
 bin/rmc
