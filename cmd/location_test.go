@@ -55,6 +55,9 @@ func TestLocationsObj_countChar(t *testing.T) {
 	})
 }
 
+//
+// Helper methods for the locations testing
+//
 func locationInterfaceGenerator() iLocation {
 	var locRes []LocationResults
 	// jsonFile, _ := os.Open("fixtures/location.json")

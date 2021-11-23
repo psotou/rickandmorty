@@ -10,27 +10,40 @@ import (
 )
 
 func Test_charCounterResult(t *testing.T) {
-	tests := []struct {
+	tests := struct {
 		name string
 		want []CharCounterResults
 	}{
+		name: "",
+		want: charCounterGenerator(),
+	}
+
+	resourceRangeOfIds := []ResourceRange{
 		{
-			name: "",
-			want: charCounterGenerator(),
+			Resource: "location",
+			Range:    makeRange(1, 5),
+		},
+		{
+			Resource: "episode",
+			Range:    makeRange(1, 5),
+		},
+		{
+			Resource: "character",
+			Range:    makeRange(1, 5),
 		},
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := charCounterResult().Results; !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("charCounterResult() = %v, want %v", got, tt.want)
-			}
-		})
-	}
+
+	t.Run(tests.name, func(t *testing.T) {
+		if got := charCounterResult(resourceRangeOfIds).Results; !reflect.DeepEqual(got, tests.want) {
+			t.Errorf("charCounterResult() = %v, want %v", got, tests.want)
+		}
+	})
 }
 
 func charCounterGenerator() []CharCounterResults {
-	var charRes CharCounter
-	jsonFile, _ := os.Open("fixtures/char_counter.json")
+	charRes := CharCounter{}
+	// jsonFile, _ := os.Open("fixtures/char_counter.json")
+	jsonFile, _ := os.Open("fix/char_counter.json")
 	defer jsonFile.Close()
 
 	byteValue, _ := io.ReadAll(jsonFile)

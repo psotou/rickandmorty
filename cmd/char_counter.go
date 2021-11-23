@@ -18,41 +18,42 @@ type CharCounterResults struct {
 	Resource string `json:"resource"`
 }
 
-var (
-	count int
-	char  string
-)
+type ResourceRange struct {
+	Resource string
+	Range    []string
+}
 
-func charCounter(resource string) CharCounterResults {
-	switch resource {
+// func charCounter(resource string) CharCounterResults {
+// func charCounter(resource string, idsRange []string) CharCounterResults {
+func charCounter(resource ResourceRange) CharCounterResults {
+	count := 0
+	char := ""
+	switch resource.Resource {
 	case "location":
 		char = "l"
-		rng := makeRange(1, getInfo(Location).Count)
-		count = getLocations(rng).countChar(char)
-	case "epsidode":
+		count = getLocations(resource.Range).countChar(char)
+	case "episode":
 		char = "e"
-		rng := makeRange(1, getInfo(Episode).Count)
-		count = getEpisodes(rng).countChar(char)
+		count = getEpisodes(resource.Range).countChar(char)
 	case "character":
 		char = "c"
-		rng := makeRange(1, getInfo(Character).Count)
-		count = getCharacters(rng).countChar(char)
+		count = getCharacters(resource.Range).countChar(char)
 	}
 
 	res := CharCounterResults{
 		Char:     char,
 		Count:    count,
-		Resource: resource,
+		Resource: resource.Resource,
 	}
 
 	return res
 }
 
-func charCounterResult() CharCounter {
+func charCounterResult(resourceIdsRangeMap []ResourceRange) CharCounter {
 	start := time.Now()
 	res := []CharCounterResults{}
-	charCounterResources := []string{"location", "epsidode", "character"}
-	for _, resource := range charCounterResources {
+
+	for _, resource := range resourceIdsRangeMap {
 		res = append(res, charCounter(resource))
 	}
 	elapsed := time.Since(start)
