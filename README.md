@@ -1,8 +1,8 @@
-# Rick and Morty Challange
+# Rick and Morty API
 
 ### Generals 
 
-Personal approach to solve the Rick and Morty challenge. It provides the code and an executable for thouse who aren't really into Go (although you totally should, the language is awesome). So if you aren't a gopher, go clone this repo
+This project works both as a kind of SDK to consume the Rick And Morty API and as a standalone executable for thouse who aren't really into Go (although you totally should, the language is awesome). So if you aren't a gopher, go clone this repo
 
 ```bash
 git clone https://github.com/psotou/rickandmortyapi.git
@@ -16,28 +16,35 @@ bin/rmc
 
 This should produce a JSON file (results.json) in the same directory where you run the executable.
 
-Also, in case you are unfamiliar with how to structure projects with Go, the `cmd/` directory is where you add the main application entry point files for the project.
+### Examples
 
-I also setup a pipeline (github action where one can see the test code coverage).
+To get a certain resource, you have to pass an array (slice) of strings with the `ids` that you want to retrieve. For example, if you want to get the resource Character for the characters with ids 1, 2 and 3, you can do:
 
-### Project Structure
-
-```bash
-cmd/
-├── fixtures/
-├── char_counter.go
-├── char_counter_test.go
-├── character.go
-├── character_test.go
-├── episode.go
-├── episode_locations.go
-├── episode_locations_test.go
-├── episode_test.go
-├── final_answer.go
-├── http.go
-├── info.go
-├── location.go
-├── location_test.go
-└── main.go
+```go
+func main () {
+    idsRange := []string{"1", "2", "3"}
+    characters := getCharacters(idsRange)
+    fmt.Println(characters)
+}
 ```
 
+If you want to get all the elements of a resource, do:
+
+```go
+func main () {
+    maxCharacterId := getInfo(Character).Count
+    idsRange := makeRange(1, maxCharacterId)
+    characters := getCharacters(idsRange)
+    fmt.Println(characters)
+}
+```
+
+Additionally, there exists a `counChar` method for counting the number of ocurrences of a certain letter (case sensitive) within the `name` element of the resource:
+
+```go
+func main () {
+    idsRange := []string{"1", "2", "3"}
+    characters := getCharacters(idsRange)
+    fmt.Println(characters.countChar("o"))
+}
+```
