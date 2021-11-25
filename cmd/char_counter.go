@@ -38,20 +38,18 @@ func charCounter(resource ResourceRange) CharCounterResults {
 		count = getCharacters(resource.Range).countChar(char)
 	}
 
-	res := CharCounterResults{
+	return CharCounterResults{
 		Char:     char,
 		Count:    count,
 		Resource: resource.Resource,
 	}
-
-	return res
 }
 
-func charCounterResult(resourceIdsRangeMap []ResourceRange) CharCounter {
+func charCounterResult(resourceIdsRangeSlc []ResourceRange) CharCounter {
 	start := time.Now()
 	res := []CharCounterResults{}
 
-	for _, resource := range resourceIdsRangeMap {
+	for _, resource := range resourceIdsRangeSlc {
 		res = append(res, charCounter(resource))
 	}
 	elapsed := time.Since(start)
